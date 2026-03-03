@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { useCallback, useState } from "react";
 
 import IconButton from "../UI/IconButton.jsx";
 import MinusIcon from "../UI/Icons/MinusIcon.jsx";
@@ -23,22 +23,26 @@ function isPrime(number) {
   return true;
 }
 
-
-// impede que initialCount, mesmo sem ser modificado, faça o componente ser
-// executado novamente, otimizando a aplicação
-const Counter = memo(function Counter({ initialCount }) {
+export default function Counter({ initialCount }) {
   log("<Counter /> rendered", 1);
-  const initialCountIsPrime = isPrime(initialCount);
 
+  const initialCountIsPrime = useMemo(
+    () => isPrime(initialCount),
+    [initialCount],
+  );
   const [counter, setCounter] = useState(initialCount);
 
-  function handleDecrement() {
-    setCounter((prevCounter) => prevCounter - 1);
-  }
+  // useCallback é utilizado para manter como referencia a "função antiga"
+  // visto que a cada render do componente, a função é recriada o que o react
+  // considera um modificação no componente.
 
-  function handleIncrement() {
+  const handleDecrement = useCallback(function handleDecrement() {
+    setCounter((prevCounter) => prevCounter - 1);
+  }, []);
+
+  const handleIncrement = useCallback(function handleIncrement() {
     setCounter((prevCounter) => prevCounter + 1);
-  }
+  }, []);
 
   return (
     <section className="counter">
@@ -57,6 +61,7 @@ const Counter = memo(function Counter({ initialCount }) {
       </p>
     </section>
   );
-});
+}
 
-export default Counter;
+// Memo pode não ser interessante de ser usado em casos de uma componentização
+// inteligente que evite renderizações desnecessárias
