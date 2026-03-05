@@ -1,5 +1,11 @@
-<h2>Projeto de treino - Melhorando otimização e performance em projetos React</h2>
+🚀 Projeto de Treino: Otimização e Performance em React
+Este projeto foca no aprofundamento de técnicas de performance e no entendimento do funcionamento interno do React.
 
-<p>Este projeto tem como foco de aprofundamento em técnicas de performance relacionadas ao React e como a biblioteca funciona por baixo dos panos. Neste projeto de estudos foi utilizado recursos como memo, useMemo, useCallback. Além disso, houve um estudo aplicado em como o React identifica e modifica o DOM, a importência da propriedade keys em listas e componentes e o entendimento de outros recursos utilizados pelo react como o State batching.</p>
+🧠 O que foi explorado:
+Memoização: Aplicação prática de memo, useMemo e useCallback para evitar renderizações desnecessárias.
 
+Reconciliation: Estudo de como o React identifica e modifica o DOM.
 
+Diffing Algorithm: A importância real das keys em listas e componentes.
+
+Rendering: Entendimento de conceitos como State Batching para otimizar atualizações de estado.
